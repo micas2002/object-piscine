@@ -7,8 +7,8 @@ class Bank {
 	private:
 		class Account {
 			private:
-				int	_id;
-				int	_value;
+				int		_id;
+				double	_value;
 
 			public:
 				Account();
@@ -19,13 +19,13 @@ class Bank {
 				Account & operator = (const Account &assign);
 
 				// getters
-				int	getId() const;
-				int	getValue() const;
+				int		getId() const;
+				double	getValue() const;
 
 				friend class Bank;
 		};
 
-		int						_liquidity;
+		double					_liquidity;
 		int						_lastAccountId;
 		std::map<int, Account*>	_clientAccounts;
 

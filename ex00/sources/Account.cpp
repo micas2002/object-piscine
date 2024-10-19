@@ -28,6 +28,6 @@ int	Bank::Account::getId() const {
 	return (_id);
 }
 
-int	Bank::Account::getValue() const {
+double	Bank::Account::getValue() const {
 	return (_value);
 }

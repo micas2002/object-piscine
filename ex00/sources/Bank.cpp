@@ -1,6 +1,6 @@
 #include "Bank.hpp"
 
-Bank::Bank() : _liquidity(0), _lastAccountId(0) {
+Bank::Bank() : _liquidity(100), _lastAccountId(0) {
 
 }
 
@@ -9,7 +9,12 @@ Bank::Bank(const Bank &copy) {
 }
 
 Bank::~Bank() {
+	std::map<int, Bank::Account*>::iterator it = _clientAccounts.begin();
 
+	for (; it != _clientAccounts.end(); ++it) {
+		delete it->second;
+		// _clientAccounts.erase(it);
+	}
 }
 
 Bank& Bank::operator=(const Bank &assign) {
@@ -31,8 +36,11 @@ void	Bank::createAccount() {
 }
 
 void	Bank::deleteAccount(const int id) {
-	if (_clientAccounts.find(id) != _clientAccounts.end())
+	if (_clientAccounts.find(id) != _clientAccounts.end()) {
+		delete _clientAccounts[id];
 		_clientAccounts.erase(id);
+
+	}
 	else
 		throw std::out_of_range("No Account with such id");
 }
@@ -48,6 +56,8 @@ void	Bank::makeDeposit(const int id, const unsigned int ammount) {
 }
 
 void	Bank::giveLoan(const int id, const unsigned int ammount) {
+	if ( _liquidity < ammount)
+		throw std::out_of_range("Bank does not have enough money for the loan!");
 	if (_clientAccounts.find(id) != _clientAccounts.end()) {
 		_clientAccounts[id]->_value += ammount;
 
@@ -63,8 +73,10 @@ std::ostream& operator << (std::ostream& p_os, Bank& p_bank) {
 	
 	p_os << "Bank informations : " << std::endl;
 	p_os << "Liquidity : " << p_bank._liquidity << std::endl;
+
+	p_os << "\nAccounts:" << std::endl;
 	
-	for (it; it != p_bank._clientAccounts.end(); ++it)
+	for (; it != p_bank._clientAccounts.end(); ++it)
 		p_os << *it->second << std::endl;
 	return (p_os);
 }
