@@ -13,7 +13,6 @@ Bank::~Bank() {
 
 	for (; it != _clientAccounts.end(); ++it) {
 		delete it->second;
-		// _clientAccounts.erase(it);
 	}
 }
 
@@ -39,7 +38,6 @@ void	Bank::deleteAccount(const int id) {
 	if (_clientAccounts.find(id) != _clientAccounts.end()) {
 		delete _clientAccounts[id];
 		_clientAccounts.erase(id);
-
 	}
 	else
 		throw std::out_of_range("No Account with such id");
