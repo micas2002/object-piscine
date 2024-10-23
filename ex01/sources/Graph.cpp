@@ -43,7 +43,7 @@ void	Graph::drawGraph() {
 	std::list<Vector2>::iterator it = _points.begin();
 
 	for (; it != _points.end(); ++it)
-		graph[(int)it->getY()].replace(it->getX(), 1, "X");
+		graph[(int)it->getY()].replace(it->getX() * 2, 1, "X");
 	
 	for (size = _size.getY(); size >= 0; --size)
         std::cout << size << " " << graph[size] << std::endl;
