@@ -50,6 +50,7 @@ int	main() {
 	catch(const std::exception& e) {
 		std::cout << e.what() << std::endl;
 	}
+
 	std::cout << "-----------------------" << std::endl;
 
 	try {
@@ -59,6 +60,20 @@ int	main() {
 		graph.addPoint(2, 0);
 		graph.addPoint(0, 2);
 		graph.addPoint(2, 2);
+
+		graph.drawGraph();
+	}
+	catch(const std::exception& e) {
+		std::cout << e.what() << std::endl;
+	}
+
+	std::cout << "-----------------------" << std::endl;
+
+	try {
+		Graph	graph = Graph(2, 2);
+
+		graph.addPoint(-5, 0);
+		graph.addPoint(0, -2);
 
 		graph.drawGraph();
 	}

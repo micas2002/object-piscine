@@ -25,8 +25,8 @@ Graph & Graph::operator=(const Graph &assign) {
 }
 
 void	Graph::addPoint(float x, float y) {
-	if (x > _size.getX() || y > _size.getY())
-		throw std::out_of_range("Point outside graph");
+	if (x > _size.getX() || y > _size.getY() || x < 0 || y < 0)
+		throw std::out_of_range("Point outside range");
 	_points.push_back(Vector2(x, y));
 }
 
