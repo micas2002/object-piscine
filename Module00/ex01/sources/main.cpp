@@ -58,7 +58,7 @@ int	main() {
 		graph.addPoint(0, 0);
 		graph.addPoint(2, 0);
 		graph.addPoint(0, 2);
-		graph.addPoint(0, 2);
+		graph.addPoint(2, 2);
 
 		graph.drawGraph();
 	}
