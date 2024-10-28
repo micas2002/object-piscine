@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <map>
 
 #include "Position.hpp"
 #include "Statistic.hpp"
@@ -8,9 +9,10 @@
 
 class Worker {
 	private:
-		Position	_coordonnee;
-		Statistic	_stat;
-		Shovel		*_shovel;
+		Position							_coordonnee;
+		Statistic							_stat;
+		Shovel								*_shovel;
+		static std::map<Worker*, Shovel*>	_whoHasTheShovel;
 
 	public:
 		Worker();
@@ -25,5 +27,4 @@ class Worker {
 
 		void	addShovel(Shovel *shovel);
 		void	removeShovel();
-
 };

@@ -1,6 +1,7 @@
 #include "Worker.hpp"
 
 Worker::Worker() : _coordonnee(Position()), _stat(Statistic()), _shovel(nullptr) {
+	_whoHasTheShovel.insert(std::pair< Worker*, Shovel*>(this, _shovel));
 	std::cout << "Default Constructor of Worker called" << std::endl;
 }
 
@@ -31,9 +32,21 @@ Statistic	Worker::getStat() const	{
 }
 
 void	Worker::addShovel(Shovel *shovel) {
-	_shovel = shovel;
+	if (shovel && !_shovel) {
+		std::map<Worker*, Shovel*>::iterator it = _whoHasTheShovel.begin();
+
+		for (; it != _whoHasTheShovel.end(); ++it) {
+			if (it->second == shovel)
+				it->first->removeShovel();
+		}
+		_shovel = shovel;
+		_whoHasTheShovel[this] = shovel;
+		return;
+	}
+	throw ("Could not assign the Shovel to the Worker");
 }
 
 void	Worker::removeShovel() {
 	_shovel = nullptr;
+	_whoHasTheShovel[this] = nullptr;
 }
