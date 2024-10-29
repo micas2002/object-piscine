@@ -2,17 +2,19 @@
 
 #include <iostream>
 #include <map>
+#include <set>
 
 #include "Position.hpp"
 #include "Statistic.hpp"
 #include "Shovel.hpp"
+#include "Hammer.hpp"
 
 class Worker {
 	private:
-		Position							_coordonnee;
-		Statistic							_stat;
-		Shovel								*_shovel;
-		static std::map<Worker*, Shovel*>	_whoHasTheShovel;
+		Position						_coordonnee;
+		Statistic						_stat;
+		std::set<Tool*>					_tools;
+		static std::map<Tool*, Worker*>	_whoHasTool;
 
 	public:
 		Worker();
@@ -25,6 +27,6 @@ class Worker {
 		Position	getCoordonnee() const;
 		Statistic	getStat() const;
 
-		void	addShovel(Shovel *shovel);
-		void	removeShovel();
+		void	addTool(Tool *tool);
+		void	removeTool(Tool *tool);
 };

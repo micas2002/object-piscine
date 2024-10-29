@@ -9,7 +9,7 @@ Statistic::Statistic(const Statistic &copy) {
 }
 
 Statistic::~Statistic() {
-	std::cout << "Default Deconstructor of Statistic called" << std::endl;
+	std::cout << "Default Destructor of Statistic called" << std::endl;
 }
 
 Statistic & Statistic::operator=(const Statistic &assign) {

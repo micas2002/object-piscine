@@ -10,7 +10,7 @@ Position::Position(const Position &copy) {
 }
 
 Position::~Position() {
-	std::cout << "Default Deconstructor of Position called" << std::endl;
+	std::cout << "Default Destructor of Position called" << std::endl;
 }
 
 Position & Position::operator=(const Position &assign) {

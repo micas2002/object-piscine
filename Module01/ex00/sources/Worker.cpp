@@ -1,7 +1,6 @@
 #include "Worker.hpp"
 
-Worker::Worker() : _coordonnee(Position()), _stat(Statistic()), _shovel(nullptr) {
-	_whoHasTheShovel.insert(std::pair< Worker*, Shovel*>(this, _shovel));
+Worker::Worker() : _coordonnee(Position()), _stat(Statistic()) {
 	std::cout << "Default Constructor of Worker called" << std::endl;
 }
 
@@ -11,7 +10,7 @@ Worker::Worker(const Worker &copy) {
 }
 
 Worker::~Worker() {
-	std::cout << "Default Deconstructor of Worker called" << std::endl;
+	std::cout << "Default Destructor of Worker called" << std::endl;
 }
 
 Worker & Worker::operator=(const Worker &assign) {
@@ -31,22 +30,27 @@ Statistic	Worker::getStat() const	{
 	return (_stat);
 }
 
-void	Worker::addShovel(Shovel *shovel) {
-	if (shovel && !_shovel) {
-		std::map<Worker*, Shovel*>::iterator it = _whoHasTheShovel.begin();
+void	Worker::addTool(Tool *tool) {
+	if (tool) {
+		_tools.insert(tool);
 
-		for (; it != _whoHasTheShovel.end(); ++it) {
-			if (it->second == shovel)
-				it->first->removeShovel();
+		std::map<Tool*, Worker*>::iterator it = _whoHasTool.find(tool);
+		if (it != _whoHasTool.end()) {
+			it->second->removeTool(tool);
+			_whoHasTool.erase(tool);
 		}
-		_shovel = shovel;
-		_whoHasTheShovel[this] = shovel;
-		return;
+		_whoHasTool.insert(std::pair<Tool*, Worker*>(tool, this));
 	}
-	throw ("Could not assign the Shovel to the Worker");
+	else
+		throw ("Could not assign the Tool to the Worker");
 }
 
-void	Worker::removeShovel() {
-	_shovel = nullptr;
-	_whoHasTheShovel[this] = nullptr;
+void	Worker::removeTool(Tool *tool) {
+	std::set<Tool*>::iterator it = _tools.find(tool);
+	if (tool && it != _tools.end()) {
+		_tools.erase(tool);
+		_whoHasTool.erase(tool);
+	}
+	else
+		throw ("Could not remove the Tool from the Worker");
 }
