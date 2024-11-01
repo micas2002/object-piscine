@@ -29,4 +29,5 @@ class Worker {
 
 		void	addTool(Tool *tool);
 		void	removeTool(Tool *tool);
+		void	work();
 };
