@@ -8,12 +8,14 @@
 #include "Statistic.hpp"
 #include "Shovel.hpp"
 #include "Hammer.hpp"
+#include "Workshop.hpp"
 
 class Worker {
 	private:
 		Position						_coordonnee;
 		Statistic						_stat;
 		std::set<Tool*>					_tools;
+		std::set<Workshop*>				_workshops;
 		static std::map<Tool*, Worker*>	_whoHasTool;
 
 	public:
@@ -29,5 +31,7 @@ class Worker {
 
 		void	addTool(Tool *tool);
 		void	removeTool(Tool *tool);
+		void	addWorkshop(Workshop *workshop);
+		void	removeWorkshop(Workshop *workshop);
 		void	work();
 };

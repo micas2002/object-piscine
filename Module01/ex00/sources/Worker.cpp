@@ -18,6 +18,8 @@ Worker & Worker::operator=(const Worker &assign) {
 	if (this != &assign) {
 		_coordonnee = assign._coordonnee;
 		_stat = assign._stat;
+		_tools = assign._tools;
+		_workshops = assign._workshops;
 	}
 	return (*this);
 }
@@ -53,4 +55,18 @@ void	Worker::removeTool(Tool *tool) {
 	}
 	else
 		throw ("Could not remove the Tool from the Worker");
+}
+
+void	Worker::addWorkshop(Workshop *workshop) {
+	if (workshop)
+		_workshops.insert(workshop);
+}
+
+void	Worker::removeWorkshop(Workshop *workshop) {
+	if (workshop)
+		_workshops.erase(workshop);
+}
+
+void	Worker::work() {
+	std::cout << "The worker starts working at the Workshop" << std::endl;
 }

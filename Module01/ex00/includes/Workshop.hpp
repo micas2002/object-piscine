@@ -1,13 +1,13 @@
 #pragma once
 
 #include <iostream>
-#include <list>
+#include <set>
 
 #include "Worker.hpp"
 
 class Workshop {
 	private:
-		std::list<Worker*>	_shopWorkers;
+		std::set<Worker*>	_shopWorkers;
 
 	public:
 		Workshop();
@@ -18,4 +18,5 @@ class Workshop {
 
 		void	signUp(Worker *worker);
 		void	leaveWorkshop(Worker *worker);
+		void	executeWorkDay();
 };

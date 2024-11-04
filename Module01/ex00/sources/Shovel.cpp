@@ -15,8 +15,6 @@ Shovel::~Shovel() {
 
 Shovel & Shovel::operator=(const Shovel &assign) {
 	std::cout << "Assignment operator of Shovel called" << std::endl;
-	// if (this != &assign)
-	// 	_numberOfUses = assign._numberOfUses;
 	return(*this);
 }
 

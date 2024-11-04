@@ -1,6 +1,6 @@
 #include "Tool.hpp"
 
-Tool::Tool() {
+Tool::Tool() : _numberOfUses(0) {
 	std::cout << "Default Constructor of Tool called" << std::endl;
 }
 
@@ -15,6 +15,8 @@ Tool::~Tool() {
 
 Tool & Tool::operator=(const Tool &assign) {
 	std::cout << "Asignment operator of Tool called" << std::endl;
+	if (this != &assign)
+		_numberOfUses = assign._numberOfUses;
 	return(*this);
 }
 
