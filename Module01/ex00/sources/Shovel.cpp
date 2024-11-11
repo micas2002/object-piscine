@@ -4,7 +4,7 @@ Shovel::Shovel() {
 	std::cout << "Default Constructor of Shovel called" << std::endl;
 }
 
-Shovel::Shovel(const Shovel &copy) {
+Shovel::Shovel(const Shovel &copy) : Tool(copy) {
 	std::cout << "Copy Constructor of Shovel called" << std::endl;
 	*this = copy;
 }
@@ -15,6 +15,7 @@ Shovel::~Shovel() {
 
 Shovel & Shovel::operator=(const Shovel &assign) {
 	std::cout << "Assignment operator of Shovel called" << std::endl;
+	(void)assign;
 	return(*this);
 }
 

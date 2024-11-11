@@ -1,10 +1,10 @@
 NAME = ex01
 
-HEADERS_LIST = Hammer.hpp Position.hpp Shovel.hpp Statistic.hpp Tool.hpp Workshop.hpp
+HEADERS_LIST = Hammer.hpp Position.hpp Shovel.hpp Statistic.hpp Tool.hpp Worker.hpp Workshop.hpp
 HEADERS_DIRECTORY = ./includes/
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
-SOURCES_LIST = main.cpp Hammer.cpp Position.cpp Shovel.cpp Statistic.cpp Tool.cpp Workshop.cpp
+SOURCES_LIST = main.cpp Hammer.cpp Position.cpp Shovel.cpp Statistic.cpp Tool.cpp Worker.cpp Workshop.cpp
 SOURCES_DIRECTORY = ./sources/
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 

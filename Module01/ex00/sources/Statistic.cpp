@@ -6,6 +6,7 @@ Statistic::Statistic() : level(0), exp(0) {
 
 Statistic::Statistic(const Statistic &copy) {
 	std::cout << "Copy Constructor of Statistic called" << std::endl;
+	*this = copy;
 }
 
 Statistic::~Statistic() {

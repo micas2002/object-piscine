@@ -5,6 +5,8 @@
 
 #include "Worker.hpp"
 
+class Worker;
+
 class Workshop {
 	private:
 		std::set<Worker*>	_shopWorkers;

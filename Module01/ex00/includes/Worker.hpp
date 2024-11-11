@@ -10,6 +10,8 @@
 #include "Hammer.hpp"
 #include "Workshop.hpp"
 
+class Workshop;
+
 class Worker {
 	private:
 		Position						_coordonnee;
@@ -26,8 +28,10 @@ class Worker {
 		Worker & operator = (const Worker &assign);
 
 		// getters
-		Position	getCoordonnee() const;
-		Statistic	getStat() const;
+		Position			getCoordonnee() const;
+		Statistic			getStat() const;
+		std::set<Tool*>		getTools() const;
+		std::set<Workshop*>	getWorkshops() const;
 
 		void	addTool(Tool *tool);
 		void	removeTool(Tool *tool);
