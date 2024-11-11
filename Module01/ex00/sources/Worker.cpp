@@ -1,5 +1,8 @@
 #include "Worker.hpp"
 
+// Definition of static _whoHasTool variable
+std::map<Tool*, Worker*>	Worker::_whoHasTool;
+
 Worker::Worker() : _coordonnee(Position()), _stat(Statistic()) {
 	std::cout << "Default Constructor of Worker called" << std::endl;
 }
@@ -30,6 +33,14 @@ Position	Worker::getCoordonnee() const {
 
 Statistic	Worker::getStat() const	{
 	return (_stat);
+}
+
+std::set<Tool*>	Worker::getTools() const	{
+	return (_tools);
+}
+
+std::set<Workshop*>	Worker::getWorkshops() const	{
+	return (_workshops);
 }
 
 void	Worker::addTool(Tool *tool) {
