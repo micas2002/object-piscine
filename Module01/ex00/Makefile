@@ -1,4 +1,4 @@
-NAME = ex01
+NAME = ex00
 
 HEADERS_LIST = Hammer.hpp Position.hpp Shovel.hpp Statistic.hpp Tool.hpp Worker.hpp Workshop.hpp
 HEADERS_DIRECTORY = ./includes/
