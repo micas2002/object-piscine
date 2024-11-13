@@ -36,6 +36,8 @@ Statistic	Worker::getStat() const	{
 }
 
 std::set<Tool*>	Worker::getTools() const	{
+	if (_tools.empty())
+		throw std::out_of_range("This Worker doesn't have any Tools yet");
 	return (_tools);
 }
 

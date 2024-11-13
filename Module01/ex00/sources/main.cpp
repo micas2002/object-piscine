@@ -7,12 +7,14 @@ int	main() {
 
 		worker.addTool(&shovel);
 		(*worker.getTools().begin())->use();
+		worker.removeTool(&shovel);
+		(*worker.getTools().begin())->use();
+
 
 	}
 	catch(const std::exception& e) {
-		std::cerr << e.what() << std::endl;
+		std::cout << e.what() << std::endl;
 	}
-	
 
 	return (0);
 }
