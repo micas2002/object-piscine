@@ -14,6 +14,10 @@ Worker::Worker(const Worker &copy) {
 
 Worker::~Worker() {
 	std::cout << "Default Destructor of Worker called" << std::endl;
+
+	for (std::set<Tool*>::iterator it = _tools.begin(); it != _tools.end(); ++it) {
+		_whoHasTool.erase(*it);
+	}
 }
 
 Worker & Worker::operator=(const Worker &assign) {
@@ -31,17 +35,17 @@ Position	Worker::getCoordonnee() const {
 	return (_coordonnee);
 }
 
-Statistic	Worker::getStat() const	{
+Statistic	Worker::getStat() const {
 	return (_stat);
 }
 
-std::set<Tool*>	Worker::getTools() const	{
+std::set<Tool*>	Worker::getTools() const {
 	if (_tools.empty())
 		throw std::out_of_range("This Worker doesn't have any Tools yet");
 	return (_tools);
 }
 
-std::set<Workshop*>	Worker::getWorkshops() const	{
+std::set<Workshop*>	Worker::getWorkshops() const {
 	return (_workshops);
 }
 
@@ -57,17 +61,21 @@ void	Worker::addTool(Tool *tool) {
 		_whoHasTool.insert(std::pair<Tool*, Worker*>(tool, this));
 	}
 	else
-		throw ("Could not assign the Tool to the Worker");
+		throw std::invalid_argument("Could not assign the Tool to the Worker");
 }
 
 void	Worker::removeTool(Tool *tool) {
-	std::set<Tool*>::iterator it = _tools.find(tool);
-	if (tool && it != _tools.end()) {
-		_tools.erase(tool);
-		_whoHasTool.erase(tool);
+	if (tool) {
+		std::set<Tool*>::iterator it = _tools.find(tool);
+		if (it != _tools.end()) {
+			_tools.erase(tool);
+			_whoHasTool.erase(tool);
+		}
+		else
+			throw std::out_of_range("Tool not found in this Worker's set");
 	}
 	else
-		throw ("Could not remove the Tool from the Worker");
+		throw std::invalid_argument("Invalid tool pointer");
 }
 
 void	Worker::addWorkshop(Workshop *workshop) {

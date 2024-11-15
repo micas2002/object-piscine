@@ -54,7 +54,7 @@ int	main() {
 	// 	std::cout << e.what() << std::endl;
 	// }
 
-	std::cout << std::endl << std::endl;
+	// std::cout << std::endl << std::endl;
 
 	try {
 		Shovel shovel = Shovel();
@@ -62,12 +62,13 @@ int	main() {
 		{
 			Worker worker1 = Worker();
 			worker1.addTool(&shovel);
+			std::cout << "worker1\n";
 			(*worker1.getTools().begin())->use();
 		}
 		std::cout << shovel.getNumberOfUses() << std::endl;
 		worker2.addTool(&shovel);
+		std::cout << "worker2\n";
 		(*worker2.getTools().begin())->use();
-
 
 	}
 	catch(const std::exception& e) {
