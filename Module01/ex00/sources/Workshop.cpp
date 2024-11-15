@@ -25,6 +25,8 @@ void	Workshop::signUp(Worker *worker) {
 		_shopWorkers.insert(worker);
 		worker->addWorkshop(this);
 	}
+	else
+		throw std::invalid_argument("Invalid worker pointer");
 }
 
 void	Workshop::leaveWorkshop(Worker *worker) {
@@ -32,6 +34,8 @@ void	Workshop::leaveWorkshop(Worker *worker) {
 		_shopWorkers.erase(worker);	
 		worker->removeWorkshop(this);
 	}
+	else
+		throw std::invalid_argument("Invalid worker pointer");
 }
 
 void	Workshop::executeWorkDay() {

@@ -56,19 +56,64 @@ int	main() {
 
 	// std::cout << std::endl << std::endl;
 
+	// try {
+	// 	Shovel shovel = Shovel();
+	// 	Worker worker2 = Worker();
+	// 	{
+	// 		Worker worker1 = Worker();
+	// 		worker1.addTool(&shovel);
+	// 		std::cout << "worker1\n";
+	// 		(*worker1.getTools().begin())->use();
+	// 	}
+	// 	std::cout << shovel.getNumberOfUses() << std::endl;
+	// 	worker2.addTool(&shovel);
+	// 	std::cout << "worker2\n";
+	// 	(*worker2.getTools().begin())->use();
+
+	// }
+	// catch(const std::exception& e) {
+	// 	std::cout << e.what() << std::endl;
+	// }
+
+	// std::cout << std::endl << std::endl;
+
+	// try {
+	// 	Worker worker1 = Worker();
+	// 	Worker worker2 = Worker();
+	// 	Shovel shovel = Shovel();
+	// 	Hammer hammer = Hammer();
+	// 	Workshop workshop = Workshop();
+
+	// 	worker1.addTool(&shovel);
+	// 	worker2.addTool(&hammer);
+
+	// 	workshop.signUp(&worker1);
+	// 	workshop.signUp(&worker2);
+	// 	workshop.executeWorkDay();
+	// }
+	// catch(const std::exception& e) {
+	// 	std::cout << e.what() << std::endl;
+	// }
+
+	// std::cout << std::endl << std::endl;
+
 	try {
-		Shovel shovel = Shovel();
-		Worker worker2 = Worker();
-		{
-			Worker worker1 = Worker();
-			worker1.addTool(&shovel);
-			std::cout << "worker1\n";
-			(*worker1.getTools().begin())->use();
-		}
-		std::cout << shovel.getNumberOfUses() << std::endl;
-		worker2.addTool(&shovel);
-		std::cout << "worker2\n";
-		(*worker2.getTools().begin())->use();
+		Worker worker = Worker();
+		Hammer hammer = Hammer();
+		Workshop workshop1 = Workshop();
+		Workshop workshop2 = Workshop();
+
+		worker.addTool(&hammer);
+
+		workshop1.signUp(&worker);
+		workshop2.signUp(&worker);
+		std::cout << "Workshop 1" << std::endl;
+		workshop1.executeWorkDay();
+		std::cout << "Workshop 2" << std::endl;
+		workshop1.executeWorkDay();
+
+		workshop2.leaveWorkshop(&worker);
+		workshop2.executeWorkDay();
 
 	}
 	catch(const std::exception& e) {
