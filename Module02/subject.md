@@ -1,51 +1,32 @@
 ```mermaid
 classDiagram
-	class LinkablePart {
-		<<Abstract>>
-		+ execute(float p_pression) void
+	Car <|-- BrakeController
+	Car <|-- Direction
+	Car <|-- Transmission
+	Car <|-- Motor
+	Car <|-- Eletronics
+	Car <|-- Cockpit
+	class Car {
+		- BrakeController brakeController
+		- Direction direction
+		- Transmission transmission
+		- Motor motor
+		- Electronics electronics
+		- Cockpit cockpit
 	}
 
-	class Wheel {
-		+ executeRotation(float p_force) void
+	Direction <|-- Wheel
+	class Direction {
+		- Wheel[] wheels
+
+		+ turn(float p_angle) void
 	}
 
-	class Gear {
-		- Int demultiplier
-	}
-
-	Gear <|-- GearLever
-	class GearLever {
-		- Gear[] gears
-		- Int level
-
-		+ change() void
-		+ activeGear() Gear**
-	}
-
-	Transmission <|-- Crankshaft
+	Transmission <|-- Wheel
 	class Transmission {
 		- std::vector~Wheel*~ wheels
 
 		+ activate(float p_force) void
-	}
-
-	class Crankshaft {
-		- Transmission** transmission
-
-		+ receiveForce(float p_volume) void
-	}
-
-	class ExplosionChamber {
-		- Crankshaft** crankshaft
-
-		+ fill(float p_volume) void
-	}
-
-	LinkablePart <|-- Injector
-	class Injector {
-		- ExplosionChamber** explosionChamber
-
-		+ execute(float p_pression) void
 	}
 
 	Motor <|-- Injector
@@ -59,50 +40,35 @@ classDiagram
 		+ connectToTransmission(Transmission* p_transmissio) void
 	}
 
-	Pedal <|-- LinkablePart
-	class Pedal {
-		- LinkablePart* linkablePart
+	class Injector {
+		- ExplosionChamber** explosionChamber
 
-		+ setTarget(LinkablePart* p_part) void
-		+ use(float p_pressure) void
+		+ execute(float p_pression) void
 	}
 
-	Direction <|-- Wheel
-	Direction <|-- DAE
-	class Direction {
-		- Wheel[] wheels
+	class ExplosionChamber {
+		- Crankshaft** crankshaft
 
-		+ turn(float p_angle) void
+		+ fill(float p_volume) void
 	}
 
-	DAE <|-- SteerWheel
+	class Crankshaft {
+		- Transmission** transmission
+
+		+ receiveForce(float p_volume) void
+	}
+
+	Eletronics <|-- DAE
+	class Eletronics {
+		- DAE dae
+	}
+
+	DAE <|-- Direction
 	class DAE {
 		- Direction* direction
 		- float force
 
 		+ use(float p_angle) void
-	}
-
-	class SteerWheel {
-		- DAE* dae
-
-		+ turn(float p_angle) void
-	}
-
-	Brake <|-- Wheel
-	class Brake {
-		- Wheel* wheel
-
-		+ execute(float p_force) void
-		+ attackWheel(Wheel* p_wheel) void
-	}
-
-	LinkablePart <|-- BrakeController
-	BrakeController <|-- Brake
-	class BrakeController {
-		- Brake[] brakes
-
-		+ execute(float p_pressure) void
 	}
 
 	Cockpit <|-- Pedal
@@ -118,24 +84,58 @@ classDiagram
 		+ manageGearlever() void
 	}
 
-	Eletronics <|-- DAE
-	class Eletronics {
-		- DAE dae
+	Pedal <|-- LinkablePart
+	class Pedal {
+		- LinkablePart* linkablePart
+
+		+ setTarget(LinkablePart* p_part) void
+		+ use(float p_pressure) void
 	}
 
-	Car <|-- BrakeController
-	Car <|-- Direction
-	Car <|-- Transmission
-	Car <|-- Motor
-	Car <|-- Eletronics
-	Car <|-- Cockpit
-	class Car {
-		- BrakeController brakeController
-		- Direction direction
-		- Transmission transmission
-		- Motor motor
-		- Electronics electronics
-		- Cockpit cockpit
+	BrakeController <|-- Brake
+	class BrakeController {
+		- Brake[] brakes
+
+		+ execute(float p_pressure) void
+	}
+
+	Brake <|-- Wheel
+	class Brake {
+		- Wheel* wheel
+
+		+ execute(float p_force) void
+		+ attackWheel(Wheel* p_wheel) void
+	}
+
+	class Wheel {
+		+ executeRotation(float p_force) void
+	}
+
+	SteerWheel <|-- DAE
+	class SteerWheel {
+		- DAE* dae
+
+		+ turn(float p_angle) void
+	}
+
+	GearLever <|-- Gear
+	class GearLever {
+		- Gear[] gears
+		- Int level
+
+		+ change() void
+		+ activeGear() Gear**
+	}
+
+	class Gear {
+		- Int demultiplier
+	}
+
+	LinkablePart <|.. BrakeController
+	LinkablePart <|.. Injector
+	class LinkablePart {
+		<<Abstract>>
+		+ execute(float p_pression) void
 	}
 
 ```
