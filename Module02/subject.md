@@ -1,11 +1,11 @@
 ```mermaid
 classDiagram
-	Car <|-- BrakeController
-	Car <|-- Direction
-	Car <|-- Transmission
-	Car <|-- Motor
-	Car <|-- Eletronics
-	Car <|-- Cockpit
+	Car *-- BrakeController
+	Car *-- Direction
+	Car *-- Transmission
+	Car *-- Motor
+	Car *-- Eletronics
+	Car *-- Cockpit
 	class Car {
 		- BrakeController brakeController
 		- Direction direction
@@ -22,7 +22,7 @@ classDiagram
 		+ turn(float p_angle) void
 	}
 
-	Transmission <|-- Wheel
+	Transmission o-- Wheel
 	class Transmission {
 		- std::vector~Wheel*~ wheels
 
@@ -41,19 +41,19 @@ classDiagram
 	}
 
 	class Injector {
-		- ExplosionChamber** explosionChamber
+		- ExplosionChamber* explosionChamber
 
 		+ execute(float p_pression) void
 	}
 
 	class ExplosionChamber {
-		- Crankshaft** crankshaft
+		- Crankshaft* crankshaft
 
 		+ fill(float p_volume) void
 	}
 
 	class Crankshaft {
-		- Transmission** transmission
+		- Transmission* transmission
 
 		+ receiveForce(float p_volume) void
 	}
@@ -84,7 +84,7 @@ classDiagram
 		+ manageGearlever() void
 	}
 
-	Pedal <|-- LinkablePart
+	Pedal o-- LinkablePart
 	class Pedal {
 		- LinkablePart* linkablePart
 
@@ -99,7 +99,7 @@ classDiagram
 		+ execute(float p_pressure) void
 	}
 
-	Brake <|-- Wheel
+	Brake o-- Wheel
 	class Brake {
 		- Wheel* wheel
 
@@ -111,7 +111,7 @@ classDiagram
 		+ executeRotation(float p_force) void
 	}
 
-	SteerWheel <|-- DAE
+	SteerWheel o-- DAE
 	class SteerWheel {
 		- DAE* dae
 
