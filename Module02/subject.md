@@ -4,7 +4,7 @@ classDiagram
 	Car *-- Direction
 	Car *-- Transmission
 	Car *-- Motor
-	Car *-- Eletronics
+	Car *-- Electronics
 	Car *-- Cockpit
 	class Car {
 		- BrakeController brakeController
@@ -15,7 +15,7 @@ classDiagram
 		- Cockpit cockpit
 	}
 
-	Direction <|-- Wheel
+	Direction *-- Wheel
 	class Direction {
 		- Wheel[] wheels
 
@@ -29,9 +29,9 @@ classDiagram
 		+ activate(float p_force) void
 	}
 
-	Motor <|-- Injector
-	Motor <|-- ExplosionChamber
-	Motor <|-- Crankshaft
+	Motor *-- Injector
+	Motor *-- ExplosionChamber
+	Motor *-- Crankshaft
 	class Motor {
 		- Injector injector
 		- ExplosionChamber explosionChamber
@@ -58,12 +58,12 @@ classDiagram
 		+ receiveForce(float p_volume) void
 	}
 
-	Eletronics <|-- DAE
-	class Eletronics {
+	Electronics *-- DAE
+	class Electronics {
 		- DAE dae
 	}
 
-	DAE <|-- Direction
+	DAE o-- Direction
 	class DAE {
 		- Direction* direction
 		- float force
@@ -71,9 +71,9 @@ classDiagram
 		+ use(float p_angle) void
 	}
 
-	Cockpit <|-- Pedal
-	Cockpit <|-- SteerWheel
-	Cockpit <|-- GearLever
+	Cockpit *-- Pedal
+	Cockpit *-- SteerWheel
+	Cockpit *-- GearLever
 	class Cockpit {
 		- Pedal pedal
 		- SteerWheel steerWheel
@@ -92,11 +92,11 @@ classDiagram
 		+ use(float p_pressure) void
 	}
 
-	BrakeController <|-- Brake
+	BrakeController *-- Brake
 	class BrakeController {
 		- Brake[] brakes
 
-		+ execute(float p_pressure) void
+		+ execute(float p_pression) void
 	}
 
 	Brake o-- Wheel
@@ -118,7 +118,7 @@ classDiagram
 		+ turn(float p_angle) void
 	}
 
-	GearLever <|-- Gear
+	GearLever *-- Gear
 	class GearLever {
 		- Gear[] gears
 		- Int level
