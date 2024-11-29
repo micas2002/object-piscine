@@ -13,7 +13,7 @@ class Car {
 		Pedal		_pedal;
 		GearLever	_gearLever;
 		SteerWheel	_steerWheel;
-		Brakes		_brake;
+		Brakes		_brakes;
 
 	public:
 		Car() {};
@@ -25,9 +25,35 @@ class Car {
 		~Car() {};
 
 		Car& operator = (const Car& assign) {
-			(void)assign;
+			if (this != &assign) {
+				_engine = assign._engine;
+				_pedal = assign._pedal;
+				_gearLever = assign._gearLever;
+				_steerWheel = assign._steerWheel;
+				_brakes = assign._brakes;
+			}
 
 			return (*this);
+		};
+
+		Engine		getEngine() {
+			return (_engine);
+		};
+
+		Pedal		getPedal() {
+			return (_pedal);
+		};
+
+		GearLever	getGearLever() {
+			return (_gearLever);
+		};
+
+		SteerWheel	getSteerWheel() {
+			return (_steerWheel);
+		};
+
+		Brakes		getBrakes() {
+			return (_brakes);
 		};
 
 };
