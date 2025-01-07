@@ -12,7 +12,7 @@ class Shape {
 			*this = copy;
 		}
 
-		~Shape() {}
+		virtual ~Shape() {}
 
 		Shape&	operator=(const Shape& assign) {
 			(void)assign;
@@ -20,6 +20,6 @@ class Shape {
 			return (*this);
 		}
 
-		virtual unsigned int	calculateArea(const Shape& shape);
-		virtual unsigned int	calculatePerimeter(const Shape& shape);
+		virtual unsigned int	calculateArea() = 0;
+		virtual unsigned int	calculatePerimeter() = 0;
 };

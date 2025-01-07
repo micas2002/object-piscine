@@ -1,6 +1,6 @@
 NAME = ex02
 
-HEADERS_LIST =
+HEADERS_LIST = Command.hpp ThuesdayDiscountCommand.hpp PackageReductionDiscountCommand.hpp
 HEADERS_DIRECTORY = ./includes/
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
