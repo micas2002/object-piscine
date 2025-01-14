@@ -2,9 +2,11 @@
 
 #include <iostream>
 #include <Employee.hpp>
+#include <set>
 
 class EmployeeManager {
 	private:
+		std::set<Employee*>	_employees;
 
 	public:
 		EmployeeManager() {}
@@ -13,7 +15,7 @@ class EmployeeManager {
 			*this = copy;
 		}
 		
-		virtual ~EmployeeManager() {}
+		~EmployeeManager() {}
 
 		EmployeeManager&	operator=(const EmployeeManager& assign) {
 			(void)assign;
@@ -21,8 +23,20 @@ class EmployeeManager {
 			return (*this);
 		}
 
-		virtual void	addEmployee(Employee*) = 0;
-		virtual void	removeEmployee(Employee*) = 0;
-		virtual void	executeWorkday() = 0;
-		virtual void	calculatePayroll() = 0;
+		void	addEmployee(Employee* employee) {
+			_employees.insert(employee);
+		};
+
+		void	removeEmployee(Employee* employee) {
+			_employees.erase(employee);
+		};
+
+		void	executeWorkday() {
+			std::set<Employee*>::iterator it = _employees.begin();
+
+			for (; it != _employees.end(); ++it)
+				(*it)->executeWorkday();
+		};
+
+		void	calculatePayroll();
 };
