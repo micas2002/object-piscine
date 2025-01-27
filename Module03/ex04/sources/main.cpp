@@ -31,6 +31,5 @@ int	main(void) {
 			(*loggersIt)->write(*it);
 	}
 
-	fileLogger.write("hello");
 	return (0);
 }

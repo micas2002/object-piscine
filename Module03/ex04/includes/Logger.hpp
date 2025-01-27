@@ -13,8 +13,8 @@ class Logger : public ILogger {
 		~Logger() {}
 
 		virtual void	write(std::string text) {
-			std::ofstream f(_fileName.c_str());
-    		f << text;
+			std::ofstream f(_fileName.c_str(), std::ios::app);
+    		f << text << '\n';
     		f.close();
 		}
 };
