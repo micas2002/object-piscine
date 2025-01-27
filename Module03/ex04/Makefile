@@ -1,6 +1,6 @@
 NAME = ex04
 
-HEADERS_LIST = 
+HEADERS_LIST = DateLogger.hpp HeaderLogger.hpp ILogger.hpp Logger.hpp OsLogger.hpp
 HEADERS_DIRECTORY = ./includes/
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 

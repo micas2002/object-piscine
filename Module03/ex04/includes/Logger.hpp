@@ -5,7 +5,7 @@
 
 class Logger : public ILogger {
 	private:
-		const std::string&	_fileName;
+		const std::string	_fileName;
 
 	public:
 		Logger(const std::string& fileName) : _fileName(fileName) {}
@@ -13,8 +13,8 @@ class Logger : public ILogger {
 		~Logger() {}
 
 		virtual void	write(std::string text) {
-			std::ofstream out(_fileName);
-    		out << text;
-    		out.close();
+			std::ofstream f(_fileName.c_str());
+    		f << text;
+    		f.close();
 		}
 };
