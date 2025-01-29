@@ -1,0 +1,2 @@
+This project is a specialization from the 42 cursus on Object Oriented Programming.
+Here various themes and concepts about OOP were explored, such as encapsulation, SOLID principles and design patterns
