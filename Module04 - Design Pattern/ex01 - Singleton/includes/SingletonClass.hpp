@@ -11,7 +11,7 @@ class SingletonClass {
 		SingletonClass() {};
 		// static SingletonClass*	_instance;
 		static std::unique_ptr<SingletonClass>	_instance;
-		std::list<A*>			_elements;
+		std::list<A*>							_elements;
 
 	public:
 		SingletonClass(const SingletonClass& copy) = delete;

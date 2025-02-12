@@ -83,5 +83,13 @@ int	main() {
 		RoomList->removeElement(&room2);
 		RoomList->removeElement(&room3);
 	}
+
+	{
+		SingletonClass<Student>* StudentList = SingletonClass<Student>::getSingletonInstance();
+		SingletonClass<Student>* StudentList2 = SingletonClass<Student>::getSingletonInstance();
+
+		std::cout << StudentList->getSingletonInstance() << std::endl;
+		std::cout << StudentList2->getSingletonInstance() << std::endl;
+	}
 	
 }
