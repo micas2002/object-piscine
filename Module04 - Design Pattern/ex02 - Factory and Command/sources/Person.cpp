@@ -112,17 +112,25 @@ Secretary&	Secretary::operator=(const Secretary& assign) {
 
 Form*	Secretary::createForm(FormType p_formType) {
 	switch (p_formType) {
-		case FormType::CourseFinished:
-			return new CourseFinishedForm();
+		case FormType::CourseFinished: {
+			CourseFinishedFactory courseFinished = CourseFinishedFactory();
+			return courseFinished.createForm();
+		}
 		
-		case FormType::NeedMoreClassRoom:
-			return new NeedMoreClassRoomForm();
+		case FormType::NeedMoreClassRoom: {
+			NeedMoreClassRoomFactory needMoreClassRoom = NeedMoreClassRoomFactory();
+			return needMoreClassRoom.createForm();
+		}
 		
-		case FormType::NeedCourseCreation:
-			return new NeedCourseCreationForm();
+		case FormType::NeedCourseCreation: {
+			NeedCourseCreationFactory NeedCourseCreation = NeedCourseCreationFactory();
+			return NeedCourseCreation.createForm();
+		}
 		
-		case FormType::SubscriptionToCourse:
-			return new SubscriptionToCourseForm();
+		case FormType::SubscriptionToCourse: {
+			SubscriptionToCourseFactory subscriptionToCourse = SubscriptionToCourseFactory();
+			return subscriptionToCourse.createForm();
+		}
 		
 		default:
 			return (nullptr);
