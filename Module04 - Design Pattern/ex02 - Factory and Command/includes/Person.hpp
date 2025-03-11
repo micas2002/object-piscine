@@ -91,6 +91,10 @@ class Professor : public Staff {
 
 class Secretary : public Staff {
 	private:
+		CourseFinishedFactory		_courseFinishedFactory;
+		NeedMoreClassRoomFactory	_needMoreClassRoomFactory;
+		NeedCourseCreationFactory	_needCourseCreationFactory;
+		SubscriptionToCourseFactory	_subscritionToCourseFactory;
 
 	public:
 		Secretary();

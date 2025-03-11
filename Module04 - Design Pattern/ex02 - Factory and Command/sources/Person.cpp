@@ -98,7 +98,12 @@ void	Professor::doClass() {}
 void	Professor::closeCourse() {}
 
 // Class Secretary
-Secretary::Secretary() {}
+Secretary::Secretary() {
+	_courseFinishedFactory = CourseFinishedFactory();
+	_needMoreClassRoomFactory = NeedMoreClassRoomFactory();
+	_needCourseCreationFactory = NeedCourseCreationFactory();
+	_subscritionToCourseFactory = SubscriptionToCourseFactory();
+}
 
 Secretary::Secretary(const Secretary& copy) : Staff(copy) {*this = copy;}
 
@@ -112,25 +117,17 @@ Secretary&	Secretary::operator=(const Secretary& assign) {
 
 Form*	Secretary::createForm(FormType p_formType) {
 	switch (p_formType) {
-		case FormType::CourseFinished: {
-			CourseFinishedFactory courseFinished = CourseFinishedFactory();
-			return courseFinished.createForm();
-		}
+		case FormType::CourseFinished:
+			return _courseFinishedFactory.createForm();
 		
-		case FormType::NeedMoreClassRoom: {
-			NeedMoreClassRoomFactory needMoreClassRoom = NeedMoreClassRoomFactory();
-			return needMoreClassRoom.createForm();
-		}
+		case FormType::NeedMoreClassRoom:
+			return _needMoreClassRoomFactory.createForm();
 		
-		case FormType::NeedCourseCreation: {
-			NeedCourseCreationFactory needCourseCreation = NeedCourseCreationFactory();
-			return needCourseCreation.createForm();
-		}
+		case FormType::NeedCourseCreation:
+			return _needCourseCreationFactory.createForm();
 		
-		case FormType::SubscriptionToCourse: {
-			SubscriptionToCourseFactory subscriptionToCourse = SubscriptionToCourseFactory();
-			return subscriptionToCourse.createForm();
-		}
+		case FormType::SubscriptionToCourse:
+			return _subscritionToCourseFactory.createForm();
 		
 		default:
 			return (nullptr);
