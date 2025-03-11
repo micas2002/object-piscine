@@ -123,8 +123,8 @@ Form*	Secretary::createForm(FormType p_formType) {
 		}
 		
 		case FormType::NeedCourseCreation: {
-			NeedCourseCreationFactory NeedCourseCreation = NeedCourseCreationFactory();
-			return NeedCourseCreation.createForm();
+			NeedCourseCreationFactory needCourseCreation = NeedCourseCreationFactory();
+			return needCourseCreation.createForm();
 		}
 		
 		case FormType::SubscriptionToCourse: {
