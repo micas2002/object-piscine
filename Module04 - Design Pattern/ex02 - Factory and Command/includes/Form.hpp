@@ -1,5 +1,7 @@
 #pragma once
 
+#include "FormCommand.hpp"
+
 enum class FormType {
 	CourseFinished,
 	NeedMoreClassRoom,
@@ -23,9 +25,10 @@ class Form {
 
 class CourseFinishedForm : public Form {
 	private:
+		Receiver&	_receiver;
 
 	public:
-		CourseFinishedForm();
+		CourseFinishedForm(Receiver& rec);
 		CourseFinishedForm(const CourseFinishedForm& copy);
 		~CourseFinishedForm();
 
@@ -36,9 +39,10 @@ class CourseFinishedForm : public Form {
 
 class NeedCourseCreationForm : public Form {
 	private:
+		Receiver&	_receiver;
 
 	public:
-		NeedCourseCreationForm();
+		NeedCourseCreationForm(Receiver& rec);
 		NeedCourseCreationForm(const NeedCourseCreationForm& copy);
 		~NeedCourseCreationForm();
 
@@ -49,9 +53,10 @@ class NeedCourseCreationForm : public Form {
 
 class NeedMoreClassRoomForm : public Form {
 	private:
+		Receiver&	_receiver;
 
 	public:
-		NeedMoreClassRoomForm();
+		NeedMoreClassRoomForm(Receiver& rec);
 		NeedMoreClassRoomForm(const NeedMoreClassRoomForm& copy);
 		~NeedMoreClassRoomForm();
 
@@ -62,9 +67,10 @@ class NeedMoreClassRoomForm : public Form {
 
 class SubscriptionToCourseForm : public Form {
 	private:
+		Receiver&	_receiver;
 
 	public:
-		SubscriptionToCourseForm();
+		SubscriptionToCourseForm(Receiver& rec);
 		SubscriptionToCourseForm(const SubscriptionToCourseForm& copy);
 		~SubscriptionToCourseForm();
 

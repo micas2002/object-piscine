@@ -71,6 +71,7 @@ class Headmaster : public Staff {
 		Headmaster&	operator = (const Headmaster& assign);
 
 		void	receiveForm(Form* p_form);
+		void	executeForm(Form* p_form);
 };
 
 class Professor : public Staff {

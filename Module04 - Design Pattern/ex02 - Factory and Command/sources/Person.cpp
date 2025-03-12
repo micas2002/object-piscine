@@ -75,7 +75,15 @@ Headmaster&	Headmaster::operator=(const Headmaster& assign) {
 	return (*this);
 }
 
-void	Headmaster::receiveForm(Form* p_form) {(void)p_form;}
+void	Headmaster::receiveForm(Form* p_form) {
+	if (p_form)
+		_formToValidate.push_back(p_form);
+}
+
+void	Headmaster::executeForm(Form* p_form) {
+	if (p_form)
+		p_form->execute();
+}
 
 // Class Professor
 Professor::Professor() : _currentCourse(nullptr) {}

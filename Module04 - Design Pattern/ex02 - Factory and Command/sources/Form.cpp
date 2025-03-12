@@ -21,7 +21,7 @@ Form&	Form::operator=(const Form& assign) {
 }
 
 // Class CourseFinishedForm
-CourseFinishedForm::CourseFinishedForm() {
+CourseFinishedForm::CourseFinishedForm(Receiver& rec) : _receiver(rec) {
 	
 }
 
@@ -34,17 +34,18 @@ CourseFinishedForm::~CourseFinishedForm() {
 }
 
 CourseFinishedForm&	CourseFinishedForm::operator=(const CourseFinishedForm& assign) {
-	(void)assign;
+	if (this != &assign)
+		this->_receiver = assign._receiver;
 
 	return (*this);
 }
 
 void	CourseFinishedForm::execute() {
-
+	_receiver.executeForm();
 }
 
 // Class NeedCourseCreationForm
-NeedCourseCreationForm::NeedCourseCreationForm() {
+NeedCourseCreationForm::NeedCourseCreationForm(Receiver& rec) : _receiver(rec) {
 
 }
 
@@ -57,17 +58,18 @@ NeedCourseCreationForm::~NeedCourseCreationForm() {
 }
 
 NeedCourseCreationForm&	NeedCourseCreationForm::operator=(const NeedCourseCreationForm& assign) {
-	(void)assign;
+	if (this != &assign)
+		this->_receiver = assign._receiver;
 
 	return (*this);
 }
 
 void	NeedCourseCreationForm::execute() {
-
+	_receiver.executeForm();
 }
 
 // Class NeedMoreClassRoomForm
-NeedMoreClassRoomForm::NeedMoreClassRoomForm() {
+NeedMoreClassRoomForm::NeedMoreClassRoomForm(Receiver& rec) : _receiver(rec) {
 
 }
 
@@ -80,18 +82,19 @@ NeedMoreClassRoomForm::~NeedMoreClassRoomForm() {
 }
 
 NeedMoreClassRoomForm&	NeedMoreClassRoomForm::operator=(const NeedMoreClassRoomForm& assign) {
-	(void)assign;
+	if (this != &assign)
+		this->_receiver = assign._receiver;
 
 	return (*this);
 }
 
 
 void	NeedMoreClassRoomForm::execute() {
-
+	_receiver.executeForm();
 }
 
 // Class SubscriptionToCourseForm
-SubscriptionToCourseForm::SubscriptionToCourseForm() {
+SubscriptionToCourseForm::SubscriptionToCourseForm(Receiver& rec) : _receiver(rec) {
 
 }
 
@@ -104,11 +107,12 @@ SubscriptionToCourseForm::~SubscriptionToCourseForm() {
 }
 
 SubscriptionToCourseForm& SubscriptionToCourseForm::operator=(const SubscriptionToCourseForm& assgin) {
-	(void)this;
+	if (this != &assgin)
+		this->_receiver = assgin._receiver;
 
 	return (*this);
 }
 
 void	SubscriptionToCourseForm::execute() {
-
+	_receiver.executeForm();
 }
