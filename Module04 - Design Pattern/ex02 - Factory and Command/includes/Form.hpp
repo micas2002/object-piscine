@@ -1,6 +1,9 @@
 #pragma once
 
 #include "FormCommand.hpp"
+#include <iostream>
+
+class Receiver;
 
 enum class FormType {
 	CourseFinished,
@@ -12,69 +15,78 @@ enum class FormType {
 class Form {
 	private:
 		FormType	_formType;
+		bool		_isSigned;
+		std::string	_whoCreatedForm;
 		
 	public:
 		Form(FormType p_formType);
 		Form(const Form& copy);
-		~Form();
+		virtual ~Form();
 
 		Form&	operator = (const Form& assign);
 
-		virtual void	execute() = 0;
+		FormType&		getFormType();
+		bool			getIsSigned();
+		std::string&	getWhoCreatedForm();
+
+		void	setIsSigned(bool isSigned);
+		void	setWhoCreatedForm(const std::string& _whoCreatedForm);
+
+		virtual void	execute(Form* p_form) = 0;
 };
 
 class CourseFinishedForm : public Form {
 	private:
-		Receiver&	_receiver;
+		Receiver*	_receiver;
 
 	public:
-		CourseFinishedForm(Receiver& rec);
+		CourseFinishedForm();
 		CourseFinishedForm(const CourseFinishedForm& copy);
-		~CourseFinishedForm();
+		virtual ~CourseFinishedForm();
 
 		CourseFinishedForm&	operator = (const CourseFinishedForm& assign);
 
-		void	execute();
+		void	execute(Form* p_form);
 };
 
 class NeedCourseCreationForm : public Form {
 	private:
-		Receiver&	_receiver;
+		Receiver*	_receiver;
 
 	public:
-		NeedCourseCreationForm(Receiver& rec);
+		NeedCourseCreationForm();
 		NeedCourseCreationForm(const NeedCourseCreationForm& copy);
-		~NeedCourseCreationForm();
+		virtual ~NeedCourseCreationForm();
 
 		NeedCourseCreationForm&	operator = (const NeedCourseCreationForm& assign);
 	 
-		void	execute();
+		void	execute(Form* p_form);
 };
 
 class NeedMoreClassRoomForm : public Form {
 	private:
-		Receiver&	_receiver;
+		Receiver*	_receiver;
 
 	public:
-		NeedMoreClassRoomForm(Receiver& rec);
+		NeedMoreClassRoomForm();
 		NeedMoreClassRoomForm(const NeedMoreClassRoomForm& copy);
-		~NeedMoreClassRoomForm();
+		virtual ~NeedMoreClassRoomForm();
 
 		NeedMoreClassRoomForm&	operator = (const NeedMoreClassRoomForm& assign);
 
-		void	execute();
+		void	execute(Form* p_form);
 };
 
 class SubscriptionToCourseForm : public Form {
 	private:
-		Receiver&	_receiver;
+		Receiver*	_receiver;
 
 	public:
-		SubscriptionToCourseForm(Receiver& rec);
+		SubscriptionToCourseForm();
 		SubscriptionToCourseForm(const SubscriptionToCourseForm& copy);
-		~SubscriptionToCourseForm();
+		virtual ~SubscriptionToCourseForm();
 
 		SubscriptionToCourseForm&	operator = (const SubscriptionToCourseForm& assign);
 
-		void	execute();
+		void	execute(Form* p_form);
 };

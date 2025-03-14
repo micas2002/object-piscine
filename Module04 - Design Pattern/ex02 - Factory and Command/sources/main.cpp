@@ -1,95 +1,68 @@
-#include "SingletonClass.hpp"
 #include "Person.hpp"
 #include "Course.hpp"
 #include "Room.hpp"
 
 int	main() {
 	{
-		SingletonClass<Student>* StudentList = SingletonClass<Student>::getSingletonInstance();
-		Student	student1 = Student("student1");
-		Student	student2 = Student("student2");
-		Student	student3 = Student("student3");
-
-		StudentList->addNewElement(&student1);
-		StudentList->addNewElement(&student2);
-		StudentList->addNewElement(&student3);
-
-		std::list<Student*>	list = StudentList->getElements();
-
-		for (auto v : list)
-	        std::cout << v->getName() << "\n";
-
-		StudentList->removeElement(&student1);
-		StudentList->removeElement(&student2);
-		StudentList->removeElement(&student3);
-	}
-
-	{
-		SingletonClass<Staff>* StaffList = SingletonClass<Staff>::getSingletonInstance();
-		Staff staff1 = Staff("staff1");
-		Staff staff2 = Staff("staff2");
-		Staff staff3 = Staff("staff3");
-
-		StaffList->addNewElement(&staff1);
-		StaffList->addNewElement(&staff2);
-		StaffList->addNewElement(&staff3);
-
-		std::list<Staff*>	list = StaffList->getElements();
-
-		for (auto v : list)
-	        std::cout << v->getName() << "\n";
-
-		StaffList->removeElement(&staff1);
-		StaffList->removeElement(&staff2);
-		StaffList->removeElement(&staff3);
-	}
-
-	{
-		SingletonClass<Course>* CourseList = SingletonClass<Course>::getSingletonInstance();
-		Course course1 = Course("course1");
-		Course course2 = Course("course2");
-		Course course3 = Course("course3");
-
-		CourseList->addNewElement(&course1);
-		CourseList->addNewElement(&course2);
-		CourseList->addNewElement(&course3);
-
-		std::list<Course*>	list = CourseList->getElements();
-
-		for (auto v : list)
-	        std::cout << v->getName() << "\n";
-
-		CourseList->removeElement(&course1);
-		CourseList->removeElement(&course2);
-		CourseList->removeElement(&course3);
-	}
-
-	{
-		SingletonClass<Room>* RoomList = SingletonClass<Room>::getSingletonInstance();
-		Room room1 = Room(1);
-		Room room2 = Room(2);
-		Room room3 = Room(3);
-
-		RoomList->addNewElement(&room1);
-		RoomList->addNewElement(&room2);
-		RoomList->addNewElement(&room3);
-
-		std::list<Room*>	list = RoomList->getElements();
-
-		for (auto v : list)
-	        std::cout << v->getID() << "\n";
-
-		RoomList->removeElement(&room1);
-		RoomList->removeElement(&room2);
-		RoomList->removeElement(&room3);
-	}
-
-	{
-		SingletonClass<Student>* StudentList = SingletonClass<Student>::getSingletonInstance();
-		SingletonClass<Student>* StudentList2 = SingletonClass<Student>::getSingletonInstance();
-
-		std::cout << StudentList->getSingletonInstance() << std::endl;
-		std::cout << StudentList2->getSingletonInstance() << std::endl;
-	}
+		Secretary	secretary = Secretary();
+		Form*	form = secretary.createForm(FormType::CourseFinished);
 	
+		form->setWhoCreatedForm("John");
+	
+		Headmaster headmaster = Headmaster();
+	
+		headmaster.signForm(form);
+		delete form;
+	}
+
+	{
+		Secretary	secretary = Secretary();
+		Form*	form = secretary.createForm(FormType::NeedMoreClassRoom);
+	
+		form->setWhoCreatedForm("Carl");
+	
+		Headmaster headmaster = Headmaster();
+	
+		headmaster.signForm(form);
+		delete form;
+	}
+
+	{
+		Secretary	secretary = Secretary();
+		Form*	form = secretary.createForm(FormType::NeedMoreClassRoom);
+	
+		form->setWhoCreatedForm("Tony");
+	
+		form->execute(form);
+		delete form;
+	}
+
+	{
+		Secretary	secretary = Secretary();
+		Form*	form1 = secretary.createForm(FormType::CourseFinished);
+		Form*	form2 = secretary.createForm(FormType::NeedMoreClassRoom);
+		Form*	form3 = secretary.createForm(FormType::NeedCourseCreation);
+		Form*	form4 = secretary.createForm(FormType::SubscriptionToCourse);
+	
+		form1->setWhoCreatedForm("Amanda");
+		form2->setWhoCreatedForm("Carl");
+		form3->setWhoCreatedForm("Peter");
+		form4->setWhoCreatedForm("Sofia");
+	
+		Headmaster headmaster = Headmaster();
+	
+		headmaster.receiveForm(form1);
+		headmaster.receiveForm(form2);
+		headmaster.receiveForm(form3);
+		headmaster.receiveForm(form4);
+
+		for (auto i: headmaster.getFormsToValidate())
+			headmaster.signForm(i);
+
+		delete form1;
+		delete form2;
+		delete form3;
+		delete form4;
+	}
+	return (0);
 }

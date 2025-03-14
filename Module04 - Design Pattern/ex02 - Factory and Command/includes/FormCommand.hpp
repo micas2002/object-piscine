@@ -3,6 +3,8 @@
 #include "Form.hpp"
 #include <iostream>
 
+class Form;
+
 class Receiver {
 	private:
 	
@@ -10,5 +12,5 @@ class Receiver {
 		Receiver();
 		~Receiver();
 
-		void	executeForm();
+		void	executeForm(Form* p_form);
 };

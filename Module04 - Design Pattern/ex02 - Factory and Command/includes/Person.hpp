@@ -70,7 +70,10 @@ class Headmaster : public Staff {
 
 		Headmaster&	operator = (const Headmaster& assign);
 
+		std::vector<Form*>	getFormsToValidate();
+
 		void	receiveForm(Form* p_form);
+		void	signForm(Form* p_form);
 		void	executeForm(Form* p_form);
 };
 

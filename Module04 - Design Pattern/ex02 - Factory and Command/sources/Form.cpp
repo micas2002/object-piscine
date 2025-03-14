@@ -1,37 +1,44 @@
 #include "Form.hpp"
 
 // Class Form
-Form::Form(FormType p_formType) : _formType(p_formType) {
-
-}
+Form::Form(FormType p_formType) : _formType(p_formType),
+	_isSigned(false) {}
 
 Form::Form(const Form& copy) {
 	*this = copy;
 }
 
-Form::~Form() {
-
-}
+Form::~Form() {}
 
 Form&	Form::operator=(const Form& assign) {
-	if (this != &assign)
+	if (this != &assign) {
 		this->_formType = assign._formType;
+		this->_isSigned = assign._isSigned;
+		this->_whoCreatedForm = assign._whoCreatedForm;
+	}
 	
 	return (*this);
 }
 
-// Class CourseFinishedForm
-CourseFinishedForm::CourseFinishedForm(Receiver& rec) : _receiver(rec) {
-	
-}
+FormType&	Form::getFormType() {return (_formType);}
 
-CourseFinishedForm::CourseFinishedForm(const CourseFinishedForm& copy) {
+bool	Form::getIsSigned() {return (_isSigned);}
+
+std::string&	Form::getWhoCreatedForm() {return (_whoCreatedForm);}
+
+void	Form::setIsSigned(bool isSigned) {_isSigned = isSigned;}
+
+void	Form::setWhoCreatedForm(const std::string& whoCreatedForm) {_whoCreatedForm = whoCreatedForm;}
+
+// Class CourseFinishedForm
+CourseFinishedForm::CourseFinishedForm() : Form(FormType::CourseFinished),
+	_receiver(nullptr) {}
+
+CourseFinishedForm::CourseFinishedForm(const CourseFinishedForm& copy) : Form(copy) {
 	*this = copy;
 }
 
-CourseFinishedForm::~CourseFinishedForm() {
-
-}
+CourseFinishedForm::~CourseFinishedForm() {}
 
 CourseFinishedForm&	CourseFinishedForm::operator=(const CourseFinishedForm& assign) {
 	if (this != &assign)
@@ -40,22 +47,19 @@ CourseFinishedForm&	CourseFinishedForm::operator=(const CourseFinishedForm& assi
 	return (*this);
 }
 
-void	CourseFinishedForm::execute() {
-	_receiver.executeForm();
+void	CourseFinishedForm::execute(Form* p_form) {
+	_receiver->executeForm(p_form);
 }
 
 // Class NeedCourseCreationForm
-NeedCourseCreationForm::NeedCourseCreationForm(Receiver& rec) : _receiver(rec) {
+NeedCourseCreationForm::NeedCourseCreationForm() : Form(FormType::NeedCourseCreation),
+	_receiver(nullptr) {}
 
-}
-
-NeedCourseCreationForm::NeedCourseCreationForm(const NeedCourseCreationForm& copy) {
+NeedCourseCreationForm::NeedCourseCreationForm(const NeedCourseCreationForm& copy) : Form(copy) {
 	*this = copy;
 }
 
-NeedCourseCreationForm::~NeedCourseCreationForm() {
-
-}
+NeedCourseCreationForm::~NeedCourseCreationForm() {}
 
 NeedCourseCreationForm&	NeedCourseCreationForm::operator=(const NeedCourseCreationForm& assign) {
 	if (this != &assign)
@@ -64,22 +68,19 @@ NeedCourseCreationForm&	NeedCourseCreationForm::operator=(const NeedCourseCreati
 	return (*this);
 }
 
-void	NeedCourseCreationForm::execute() {
-	_receiver.executeForm();
+void	NeedCourseCreationForm::execute(Form* p_form) {
+	_receiver->executeForm(p_form);
 }
 
 // Class NeedMoreClassRoomForm
-NeedMoreClassRoomForm::NeedMoreClassRoomForm(Receiver& rec) : _receiver(rec) {
+NeedMoreClassRoomForm::NeedMoreClassRoomForm() : Form(FormType::NeedMoreClassRoom),
+	_receiver(nullptr) {}
 
-}
-
-NeedMoreClassRoomForm::NeedMoreClassRoomForm(const NeedMoreClassRoomForm& copy) {
+NeedMoreClassRoomForm::NeedMoreClassRoomForm(const NeedMoreClassRoomForm& copy) : Form(copy) {
 	*this = copy;
 }
 
-NeedMoreClassRoomForm::~NeedMoreClassRoomForm() {
-
-}
+NeedMoreClassRoomForm::~NeedMoreClassRoomForm() {}
 
 NeedMoreClassRoomForm&	NeedMoreClassRoomForm::operator=(const NeedMoreClassRoomForm& assign) {
 	if (this != &assign)
@@ -89,22 +90,19 @@ NeedMoreClassRoomForm&	NeedMoreClassRoomForm::operator=(const NeedMoreClassRoomF
 }
 
 
-void	NeedMoreClassRoomForm::execute() {
-	_receiver.executeForm();
+void	NeedMoreClassRoomForm::execute(Form* p_form) {
+	_receiver->executeForm(p_form);
 }
 
 // Class SubscriptionToCourseForm
-SubscriptionToCourseForm::SubscriptionToCourseForm(Receiver& rec) : _receiver(rec) {
+SubscriptionToCourseForm::SubscriptionToCourseForm() : Form(FormType::SubscriptionToCourse),
+	_receiver(nullptr) {}
 
-}
-
-SubscriptionToCourseForm::SubscriptionToCourseForm(const SubscriptionToCourseForm& copy) {
+SubscriptionToCourseForm::SubscriptionToCourseForm(const SubscriptionToCourseForm& copy) : Form(copy) {
 	*this = copy;
 }
 
-SubscriptionToCourseForm::~SubscriptionToCourseForm() {
-
-}
+SubscriptionToCourseForm::~SubscriptionToCourseForm() {}
 
 SubscriptionToCourseForm& SubscriptionToCourseForm::operator=(const SubscriptionToCourseForm& assgin) {
 	if (this != &assgin)
@@ -113,6 +111,6 @@ SubscriptionToCourseForm& SubscriptionToCourseForm::operator=(const Subscription
 	return (*this);
 }
 
-void	SubscriptionToCourseForm::execute() {
-	_receiver.executeForm();
+void	SubscriptionToCourseForm::execute(Form* p_form) {
+	_receiver->executeForm(p_form);
 }

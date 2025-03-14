@@ -1,10 +1,10 @@
 NAME = ex02
 
-HEADERS_LIST = Course.hpp Person.hpp Room.hpp SingletonClass.hpp
+HEADERS_LIST = Form.hpp FormCommand.hpp FormFactory.hpp Person.hpp
 HEADERS_DIRECTORY = ./includes/
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
-SOURCES_LIST = main.cpp Course.cpp Person.cpp Room.cpp
+SOURCES_LIST = main.cpp Form.cpp FormCommand.cpp FormFactory.cpp Person.cpp
 SOURCES_DIRECTORY = ./sources/
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 

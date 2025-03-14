@@ -75,14 +75,23 @@ Headmaster&	Headmaster::operator=(const Headmaster& assign) {
 	return (*this);
 }
 
+std::vector<Form*>	Headmaster::getFormsToValidate() {return (_formToValidate);}
+
 void	Headmaster::receiveForm(Form* p_form) {
 	if (p_form)
 		_formToValidate.push_back(p_form);
 }
 
+void	Headmaster::signForm(Form* p_form) {
+	if (p_form) {
+		p_form->setIsSigned(true);
+		executeForm(p_form);
+	}
+}
+
 void	Headmaster::executeForm(Form* p_form) {
 	if (p_form)
-		p_form->execute();
+		p_form->execute(p_form);
 }
 
 // Class Professor
@@ -118,7 +127,12 @@ Secretary::Secretary(const Secretary& copy) : Staff(copy) {*this = copy;}
 Secretary::~Secretary() {}
 
 Secretary&	Secretary::operator=(const Secretary& assign) {
-	(void)assign;
+	if (this != &assign) {
+		this->_courseFinishedFactory = assign._courseFinishedFactory;
+		this->_needMoreClassRoomFactory = assign._needMoreClassRoomFactory;
+		this->_needCourseCreationFactory = assign._needCourseCreationFactory;
+		this->_subscritionToCourseFactory = assign._subscritionToCourseFactory;
+	}
 
 	return (*this);
 }
