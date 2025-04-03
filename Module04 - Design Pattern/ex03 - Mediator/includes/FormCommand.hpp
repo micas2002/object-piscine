@@ -12,5 +12,5 @@ class Receiver {
 		Receiver();
 		~Receiver();
 
-		void	executeForm(Form* p_form);
+		void	executeNeedCourseCreationForm(NeedCourseCreationForm* p_form);
 };

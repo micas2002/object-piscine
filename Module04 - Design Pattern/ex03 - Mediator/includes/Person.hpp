@@ -86,7 +86,6 @@ class Headmaster : public Staff, public MediatorHeadmaster {
 class Professor : public Staff, public IProfessor {
 	private:
 		Course*	_currentCourse;
-		Form*	_form;
 
 	public:
 		Professor();
@@ -98,8 +97,7 @@ class Professor : public Staff, public IProfessor {
 		void	assignCourse(Course* p_course);
 		void	doClass();
 		void	closeCourse();
-		void	requestForm(FormType type, Headmaster& headmaster);
-		void	requestFormSign(Headmaster& headmaster);
+		void	requestCourseForm(Headmaster& headmaster);
 };
 
 class Secretary : public Staff {

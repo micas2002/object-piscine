@@ -107,7 +107,7 @@ Form*	Headmaster::requestForm(FormType type) {
 }
 
 // Class Professor
-Professor::Professor() : _currentCourse(nullptr), _form(nullptr) {}
+Professor::Professor() : _currentCourse(nullptr) {}
 
 Professor::Professor(const Professor& copy) : Staff(copy) {*this = copy;}
 
@@ -126,12 +126,15 @@ void	Professor::doClass() {}
 
 void	Professor::closeCourse() {}
 
-void	Professor::requestForm(FormType type, Headmaster& headmaster) {
-	_form = headmaster.requestForm(type);
-}
+void	Professor::requestCourseForm(Headmaster& headmaster) {
+	NeedCourseCreationForm*	form;
 
-void	Professor::requestFormSign(Headmaster& headmaster) {
-	headmaster.signForm(_form);
+	form = dynamic_cast<NeedCourseCreationForm*>(headmaster.requestForm(FormType::NeedCourseCreation));
+
+	form->setName(this->getName());
+	form->setProfessor(this);
+
+	headmaster.executeForm(form);
 }
 
 // Class Secretary

@@ -16,8 +16,7 @@ class IProfessor {
 
 	public:
 		virtual ~IProfessor() {};
-		virtual void	requestForm(FormType type, Headmaster& headmaster) = 0;
-		virtual void	requestFormSign(Headmaster& Headmaster) = 0;
+		virtual void	requestCourseForm(Headmaster& headmaster) = 0;
 };
 
 class IStudent {

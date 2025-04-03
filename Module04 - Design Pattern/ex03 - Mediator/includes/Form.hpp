@@ -1,6 +1,7 @@
 #pragma once
 
 #include "FormCommand.hpp"
+#include "Person.hpp"
 #include <iostream>
 
 class Receiver;
@@ -51,7 +52,12 @@ class CourseFinishedForm : public Form {
 
 class NeedCourseCreationForm : public Form {
 	private:
-		Receiver*	_receiver;
+		Receiver*				_receiver;
+		std::string				_name;
+		Professor*				_professor;
+		std::vector<Student*>	_students;
+		int						_numberOfClassToGraduate;
+		int						_maximumNumberIfStudents;
 
 	public:
 		NeedCourseCreationForm();
@@ -60,6 +66,12 @@ class NeedCourseCreationForm : public Form {
 
 		NeedCourseCreationForm&	operator = (const NeedCourseCreationForm& assign);
 	 
+		void	setName(std::string& name);
+		void	setProfessor(Professor* prof);
+
+		std::string&	getName();
+		Professor*	getProfessor();
+
 		void	execute(Form* p_form);
 };
 

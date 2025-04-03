@@ -23,6 +23,8 @@ class Course {
 
 		Course&	operator = (const Course& assign);
 
+		void	setName(std::string name);
+
 		std::string&	getName();
 		
 		void assign(Professor* p_professor);

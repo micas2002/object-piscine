@@ -74,8 +74,12 @@ NeedCourseCreationForm&	NeedCourseCreationForm::operator=(const NeedCourseCreati
 	return (*this);
 }
 
+void	NeedCourseCreationForm::setName(std::string& name) {_name = name;}
+
+void	NeedCourseCreationForm::setProfessor(Professor* prof) {_professor = prof;}
+
 void	NeedCourseCreationForm::execute(Form* p_form) {
-	_receiver->executeForm(p_form);
+	_receiver->executeNeedCourseCreationForm(dynamic_cast<NeedCourseCreationForm*>(p_form));
 }
 
 // Class NeedMoreClassRoomForm
@@ -98,6 +102,9 @@ NeedMoreClassRoomForm&	NeedMoreClassRoomForm::operator=(const NeedMoreClassRoomF
 	return (*this);
 }
 
+std::string&	NeedCourseCreationForm::getName() {return (_name);}
+
+Professor*	NeedCourseCreationForm::getProfessor() {return (_professor);}
 
 void	NeedMoreClassRoomForm::execute(Form* p_form) {
 	_receiver->executeForm(p_form);

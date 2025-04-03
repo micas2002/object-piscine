@@ -1,6 +1,6 @@
 #include "Course.hpp"
 
-Course::Course() : _name("Default Course name") {}
+Course::Course() : _numberOfClassToGraduate(2), _maximumNumberOfStudent(3) {}
 
 Course::Course(std::string p_name) : _name(p_name) {}
 
@@ -21,6 +21,8 @@ Course&	Course::operator=(const Course& assign) {
 
 	return (*this);
 }
+
+void	Course::setName(std::string name) {_name = name;}
 
 std::string&	Course::getName() {return (_name);}
 
